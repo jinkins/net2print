@@ -11,6 +11,7 @@
         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
         <script src="JS/index.js"></script>
+        <script src="JS/inscription.js"></script>
     </head>
     <body>
         <div data-role="page">
@@ -38,7 +39,7 @@
                                 <input type="password" name="pass" id="pw" value="" placeholder="Mot de passe" data-theme="a">
                                 <button type="button" data-theme="b" data-icon="check" id='clientConnexionBouton' onclick='clientConnexion()'>Connexion</button>
                                 <input type='hidden' name='origine' value='index.php'>
-                                <a href='Inscription'>S'inscrire</a>
+                                <a href='inscription.php' data-role='button'>S'inscrire</a>
                             </div>
                         </form>
                     </div>

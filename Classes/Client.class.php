@@ -12,7 +12,8 @@ class Client
             $num,
             $cp,
             $localite,
-            $societe;
+            $societe,
+            $mdp;
 
     public function __construct(array $donnees)
     {
@@ -81,7 +82,7 @@ class Client
 
     public function numero()
     {
-        return $this->numero;
+        return $this->num;
     }
 
     public function cp()
@@ -102,6 +103,11 @@ class Client
     public function mdp()
     {
         return $this->mdp;
+    }
+    
+    public function societe()
+    {
+        return $this->societe; 
     }
     
 
@@ -150,6 +156,11 @@ class Client
     public function setSociete($s)
     {
         $this->societe = $s;
+    }
+    
+    public function setMDP($mdp)
+    {
+        $this->mdp = $mdp;
     }
 
 }

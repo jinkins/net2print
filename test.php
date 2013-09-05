@@ -1,4 +1,4 @@
-<?php require_once('Classes/appelClasse.php'); ?>
+<?php require_once('Classes/appelClasse.php'); unset($_SESSION["client"]); ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,15 +7,7 @@
     </head>
     <body>
         <?php
-            $clientManager = new ClientManager();
-            $r = $clientManager->connection("nick-1138@hotmail.com","TheG@nts10032007");
             
-            if($r[0] == 1)
-            {
-                $client = $r[1];
-                
-                $_SESSION;
-            }
         ?>
     </body>
 </html>

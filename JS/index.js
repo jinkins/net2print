@@ -33,6 +33,6 @@ function clientConnexionOK(reponse)
 
     else
     {
-        alert(reponse.find("texte").text());
+        alert($(reponse).find("texte").text());
     }
 }
