@@ -51,7 +51,7 @@
                 ?>
             </div>
             <div data-role="content">
-                <form method='post' action='inscription2.php'>
+                <form method='post'>
                     <ul data-role="listview" data-inset="true">
                         <li data-role='fieldcontain'>
                             <label for='email'>Email</label>
