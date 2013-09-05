@@ -13,6 +13,7 @@ class Client
             $cp,
             $localite,
             $societe,
+            $tel,
             $mdp;
 
     public function __construct(array $donnees)
@@ -46,6 +47,7 @@ class Client
         $t .= "<localite>".$this->localite."</localite>";
         $t .= "<societe>".$this->societe."</societe>";
         $t .= "<email>".$this->email."</email>";
+        $t .= "<tel>".$this->tel."</tel>";
         $t .= "</client>";
         
         return $t;
@@ -110,6 +112,11 @@ class Client
         return $this->societe; 
     }
     
+    public function tel()
+    {
+        return $this->tel;
+    }
+    
 
     // SETTERS
 
@@ -161,6 +168,11 @@ class Client
     public function setMDP($mdp)
     {
         $this->mdp = $mdp;
+    }
+    
+    public function setTel($t)
+    {
+        $this->tel = $t;
     }
 
 }

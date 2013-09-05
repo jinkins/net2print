@@ -17,7 +17,7 @@ if($r === TRUE)
 else
 {
     $resultat .= "<code>2</code>";
-    $resultat .= "<texte>Erreur lors de l'inscription. Merci de vérifier que vous n'êtes pas déjà client et si vous avez correctement rempli tous les champs.</texte>";
+    $resultat .= "<texte>".var_dump($r)."</texte>";
 }
 $resultat .= "</reponse>";
 

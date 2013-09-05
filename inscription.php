@@ -86,6 +86,10 @@
                             <input type='text' name='localite' id='localite'>
                         </li>
                         <li data-role='fieldcontain'>
+                            <label for='tel'>GSM</label>
+                            <input type='text' name='tel' id='tel'>
+                        </li>
+                        <li data-role='fieldcontain'>
                             <label for='societe'>Société/Ecole</label>
                             <input type='text' name='societe' id='societe'>
                         </li>

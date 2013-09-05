@@ -9,16 +9,8 @@ function inscription()
 {
     if ($("#cgv").prop("checked") == true)
     {
-        console.log($("#email").val());
-        console.log($("#nom").val());
-        console.log($("#prenom").val());
-        console.log($("#rue").val());
-        console.log($("#numero").val());
-        console.log($("#localite").val());
-        console.log($("#mdp").val());
-        console.log($("#societe").val());
         
-        if ($("#email").val() != '' && $("#mdp").val() != '' && $("#nom").val() != '' && $("#prenom").val() != '' && $("#rue").val() != '' && $("#numero").val() != '' && $("#cp").val() != '' && $("#localite").val() != '')
+        if ($("#email").val() != '' && $("#mdp").val() != '' && $("#nom").val() != '' && $("#prenom").val() != '' && $("#rue").val() != '' && $("#numero").val() != '' && $("#cp").val() != '' && $("#localite").val() != '' && $('#tel').val() )
             $.ajax({
                 type: 'POST',
                 url: 'inscription2.php',
@@ -31,6 +23,7 @@ function inscription()
                         + "&" + "CP=" + $("#cp").val()
                         + "&" + "Localite=" + $("#localite").val()
                         + "&" + "Societe=" + $("#societe").val()
+                        + "&" + "Tel="+$('#tel').val()
 
                         ,
                 dataType: 'xml',

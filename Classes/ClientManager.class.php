@@ -17,7 +17,7 @@ class ClientManager
             $client->setSociete(NULL);
         }
         
-        $q = $this->bdd->prepare("INSERT INTO clients(Email, Nom, Prenom, Rue, Numero, CP, Localite, Societe, MDP) VALUES(:email, :nom, :prenom, :rue, :numero, :cp, :localite, :societe, :mdp)");
+        $q = $this->bdd->prepare("INSERT INTO clients(Email, Nom, Prenom, Rue, Numero, CP, Localite, Societe, MDP, Tel) VALUES(:email, :nom, :prenom, :rue, :numero, :cp, :localite, :societe, :mdp, :tel)");
         $q->bindValue("email", $client->email());
         $q->bindValue("nom", $client->nom());
         $q->bindValue("prenom", $client->prenom());
@@ -27,6 +27,7 @@ class ClientManager
         $q->bindValue("localite", $client->localite());
         $q->bindValue("societe", $client->societe());
         $q->bindValue("mdp", $client->mdp());
+        $q->bindValue("tel", $client->tel());
         
         $q->execute();
         

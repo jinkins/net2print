@@ -53,7 +53,7 @@ require_once('Classes/appelClasse.php');
                 ?>
             </div>
             <div data-role="content">
-                <form data-ajax="false" enctype="multipart/form-data">
+                <form data-ajax="false" enctype="multipart/form-data" method='post' action='commande2.php'>
                     <div data-role="collapsible-set" data-theme="c" data-content-theme="d">
                         <div data-role="collapsible">
                             <h3>Fichiers</h3>
@@ -82,6 +82,10 @@ require_once('Classes/appelClasse.php');
                                     <label for='nbCouleurs'>Nombre de feuilles couleurs</label>
                                     <input type='range' name='nbCouleurs' id='nbCouleurs' min='0' max='500' value='0' step='1'/>
                                 </li>
+                                <li data-role="fieldcontain">
+                                    <label for="fichiersComm">Indications d'assemblage <br/> (si fichier sans pagination)</label>
+                                    <textarea id='fichiersComm' name='fichiersComm'></textarea>
+                                </li>
                             </ul>
                             </p>
                         </div>
@@ -100,6 +104,11 @@ require_once('Classes/appelClasse.php');
                                             <option value='200'>200 grammes</option>
                                             <option value='250'>250 grammes</option>
                                             <option value='300'>300 grammes</option>
+                                        </optgroup>
+                                        <optgroup label='Glacés (Photo)'>
+                                            <option value='photo135'>135 grammes</option>
+                                            <option value='photo200'>200 grammes</option>
+                                            <option value='photo250'>250 grammes</option>
                                         </optgroup>
                                         <optgroup label='Couleurs'>
                                             <option value='framboise'>Framboise</option>
@@ -127,6 +136,11 @@ require_once('Classes/appelClasse.php');
                                             <option value='200'>200 grammes</option>
                                             <option value='250'>250 grammes</option>
                                             <option value='300'>300 grammes</option>
+                                        </optgroup>
+                                        <optgroup label='Glacés (Photo)'>
+                                            <option value='photo135'>135 grammes</option>
+                                            <option value='photo200'>200 grammes</option>
+                                            <option value='photo250'>250 grammes</option>
                                         </optgroup>
                                         <optgroup label='Couleurs'>
                                             <option value='framboise'>Framboise</option>
@@ -157,6 +171,11 @@ require_once('Classes/appelClasse.php');
                                             <option value='200'>200 grammes</option>
                                             <option value='250'>250 grammes</option>
                                             <option value='300'>300 grammes</option>
+                                        </optgroup>
+                                        <optgroup label='Glacés (Photo)'>
+                                            <option value='photo135'>135 grammes</option>
+                                            <option value='photo200'>200 grammes</option>
+                                            <option value='photo250'>250 grammes</option>
                                         </optgroup>
                                         <optgroup label='Couleurs'>
                                             <option value='framboise'>Framboise</option>
@@ -213,16 +232,16 @@ require_once('Classes/appelClasse.php');
                                             <option value='anneaux'>Anneaux plastiques</option>
                                         </optgroup>
                                         <optgroup label='Fast-Back'>
-                                            <option value='blanc'>Blanc</option>
-                                            <option value='noir'>Noir</option>
-                                            <option value='grisHEC'>Gris foncé (HEC)</option>
-                                            <option value='grisC'>Gris clair</option>
-                                            <option value='rouge'>Rouge</option>
-                                            <option value='bleuF'>Bleu foncé</option>
-                                            <option value='bleuC'>Bleu clair</option>
-                                            <option value='vert'>Vert</option>
-                                            <option value='brun'>Brun</option>
-                                            <option value='brunF'>Brun Foncé</option>
+                                            <option value='fastBlanc'>Blanc</option>
+                                            <option value='fastNoir'>Noir</option>
+                                            <option value='fastGrisHEC'>Gris foncé (HEC)</option>
+                                            <option value='FastrisC'>Gris clair</option>
+                                            <option value='fastRouge'>Rouge</option>
+                                            <option value='fastBleuF'>Bleu foncé</option>
+                                            <option value='fastBleuC'>Bleu clair</option>
+                                            <option value='fastVert'>Vert</option>
+                                            <option value='fastBrun'>Brun</option>
+                                            <option value='fastBrunF'>Brun Foncé</option>
                                         </optgroup>
                                     </select>
                                 </li>
@@ -250,10 +269,18 @@ require_once('Classes/appelClasse.php');
                                         <label for="cellosAvAr">Devant et derrière</label>
                                     </fieldset>
                                 </li>
+                                <li data-role="fieldcontain">
+                                    <label for="fBlanche">Feuille blanche entre couverture et première page</label>
+                                    <select name="fBlanche" id="fBlanche" data-role="slider">
+                                        <option value="pasFBlanche">Non</option>
+                                        <option value="fBlanche">Oui</option>
+                                    </select>
+                                </li>
                             </ul>
                             </p>
                         </div>
                     </div>
+                    <button type='submit'>Calculer</button>
                 </form>
             </div>
             <div data-role="footer" data-position="fixed" data-theme="c">
