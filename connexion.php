@@ -9,7 +9,7 @@ $resultat .= "<code>".$r[0]."</code>";
 if($r[0]==1)
 {
     $resultat .= $r[1]->toXML();
-    $_SESSION["client"] = $r[1];
+    $_SESSION["client"] = $r[1]->id();
 }
 else
 {

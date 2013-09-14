@@ -1,6 +1,11 @@
 <?php
-    require_once('Classes/appelClasse.php');
-    
+if (!isset($_SESSION["client"]))
+{
+    header("Location:pageConnexion.php"); // Vérifie que la personne est bien connectée.
+}
+require_once("Classes/appelClasse.php");
+require_once('fpdf/fpdf.php');
+require_once('fpdi/fpdi.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -47,7 +52,6 @@
                     </div>
                     <?php
                 }
-                
                 else
                 {
                     ?>
@@ -57,27 +61,30 @@
                 ?>
             </div>
             <div data-role="content">
-                <p>
-                    Net2Print est un service d'impression en ligne de documents. Celui-ci vous permet de commander de chez vous l'impression de documents. La procédure est simple et est expliquée ci-dessous. N'hésitez pas à cliquer sur chaque partie pour des renseignements complémentaires.
-                </p>
-                <div data-role="collapsible-set" data-theme="c" data-content-theme="d">
-                    <div data-role="collapsible" data-collapsed-icon="info" data-expanded-icon="info">
-                        <h3>Vous déposez vos documents.</h3>
-                        <p>...</p>
-                    </div>
-                    <div data-role="collapsible" data-collapsed-icon="info" data-expanded-icon="info">
-                        <h3>Vous choisissez la qualité d'impression, les différentes reliures, papier, etc.</h3>
-                        <p>...</p>
-                    </div>
-                    <div data-role="collapsible" data-collapsed-icon="info" data-expanded-icon="info">
-                        <h3>Vous payez votre commande.</h3>
-                        <p>...</p>
-                    </div>
-                    <div data-role="collapsible" data-collapsed-icon="info" data-expanded-icon="info">
-                        <h3>Nous vous avertissons dès que votre commande est prête à être receptionnée.</h3>
-                        <p>Différents lieux de reception sont prévus. Vous pouvez venir chercher votre commande dans un des magasins partenaires ou bien être livré par la poste. </p>
-                    </div>
-                </div>
+                <?php
+                $upload = new Upload();
+                $r      = $upload->link($_FILES["fichier"]);
+                if ($r[0] == 1)
+                {
+                    // Le téléchargement a été effectué correctement et le fichier est correct. 
+
+                    var_dump($_POST)
+                    ?> 
+
+
+
+
+
+
+
+
+                    <?php
+                }
+                else
+                {
+                    echo "Erreur lors de l'envoi : " . $r[2];
+                }
+                ?>
             </div>
             <div data-role="footer" data-position="fixed">
                 <h2>Net 2 Print - Service d'impression en ligne</h2>

@@ -1,5 +1,9 @@
 <?php
 require_once('Classes/appelClasse.php');
+if(!isset($_SESSION["client"]))
+    {
+        header("Location:pageConnexion.php"); // Vérifie que la personne est bien connectée.
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -53,234 +57,42 @@ require_once('Classes/appelClasse.php');
                 ?>
             </div>
             <div data-role="content">
-                <form data-ajax="false" enctype="multipart/form-data" method='post' action='commande2.php'>
-                    <div data-role="collapsible-set" data-theme="c" data-content-theme="d">
-                        <div data-role="collapsible">
-                            <h3>Fichiers</h3>
-                            <p>
-                            <p>Afin de minimiser le coût pour vous, nous imprimons les pages couleurs et les pages noires sur deux imprimantes différentes.
-                                Merci de nous fournir séparément les couleurs et les noires et blanches au format PDF (afin d'éviter tout changement dans votre mise en page) et d'indiquer la quantité correspondant à un seul exemplaire.</p>
-                            <p>Pour des raisons techniques, nous limitons le nombre de pages à 500 par exemplaire.</p>
-                            <ul data-role="listview" data-inset="true">
-                                <li data-role="fieldcontain">
-                                    <label for="nbExemplaire">Nombre d'exemplaire :</label>
-                                    <input type="range" id="nbExemplaire" name="nbExemplaire" min='0' max='100' value='0' step='1'/>
-                                </li>
-                                <li data-role="fieldcontain">
-                                    <label for="noirs">NOIRES uniquement</label>
-                                    <input type="file" id="noirs" name="noirs"/>
-                                </li>
-                                <li data-role='fieldcontain'>
-                                    <label for='nbNoires'>Nombre de feuilles noires</label>
-                                    <input type='range' name='nbNoires' id='nbNoires' min='0' max='500' value='0' step='1'/>
-                                </li>
-                                <li data-role="fieldcontain">
-                                    <label for="couleurs">COULEURS uniquement</label>
-                                    <input type="file" id="couleurs" name="couleurs"/>
-                                </li>
-                                <li data-role='fieldcontain'>
-                                    <label for='nbCouleurs'>Nombre de feuilles couleurs</label>
-                                    <input type='range' name='nbCouleurs' id='nbCouleurs' min='0' max='500' value='0' step='1'/>
-                                </li>
-                                <li data-role="fieldcontain">
-                                    <label for="fichiersComm">Indications d'assemblage <br/> (si fichier sans pagination)</label>
-                                    <textarea id='fichiersComm' name='fichiersComm'></textarea>
-                                </li>
-                            </ul>
-                            </p>
-                        </div>
-                        <div data-role="collapsible">
-                            <h3>Papier</h3>
-                            <p>
-                            <ul data-role="listview" data-inset="true">
-                                <li data-role="fieldcontain">
-                                    <label for="papCorps">Papier intérieur <br/> (hors couverture)</label>
-                                    <select id="papCorps" name="papCorps" data-native-menu="false" data-icon="grid" data-iconpos="left">
-                                        <optgroup label='Blanc'>
-                                            <option value='75'>Standard</option>
-                                            <option value='90'>90 grammes</option>
-                                            <option value='120'>120 grammes</option>
-                                            <option value='160'>160 grammes</option>
-                                            <option value='200'>200 grammes</option>
-                                            <option value='250'>250 grammes</option>
-                                            <option value='300'>300 grammes</option>
-                                        </optgroup>
-                                        <optgroup label='Glacés (Photo)'>
-                                            <option value='photo135'>135 grammes</option>
-                                            <option value='photo200'>200 grammes</option>
-                                            <option value='photo250'>250 grammes</option>
-                                        </optgroup>
-                                        <optgroup label='Couleurs'>
-                                            <option value='framboise'>Framboise</option>
-                                            <option value='orange'>Orange</option>
-                                            <option value='or'>Jaune or</option>
-                                            <option value='paille'>Jaune paille</option>
-                                            <option value='sapin'>Vert Sapin</option>
-                                            <option value='menthe'>Vert Menthe</option>
-                                            <option value='alizee'>Bleu ciel</option>
-                                            <option value='turquoise'>Turquoise</option>
-                                            <option value='bleuF'>Bleu Foncé</option>
-                                            <option value='violet'>Violet</option>
-                                        </optgroup>
-                                    </select>
-                                </li>
-                                <li data-role='fieldcontain'>
-                                    <label for='couvAv'>Couverture Avant</label>
-                                    <select id="couvAv" name="CouvAv" data-native-menu="false" data-icon="grid" data-iconpos="left">
-                                        <option value='non'>Aucune</option>
-                                        <optgroup label='Blanc'>
-                                            <option value='75'>Standard</option>
-                                            <option value='90'>90 grammes</option>
-                                            <option value='120'>120 grammes</option>
-                                            <option value='160'>160 grammes</option>
-                                            <option value='200'>200 grammes</option>
-                                            <option value='250'>250 grammes</option>
-                                            <option value='300'>300 grammes</option>
-                                        </optgroup>
-                                        <optgroup label='Glacés (Photo)'>
-                                            <option value='photo135'>135 grammes</option>
-                                            <option value='photo200'>200 grammes</option>
-                                            <option value='photo250'>250 grammes</option>
-                                        </optgroup>
-                                        <optgroup label='Couleurs'>
-                                            <option value='framboise'>Framboise</option>
-                                            <option value='orange'>Orange</option>
-                                            <option value='or'>Jaune or</option>
-                                            <option value='paille'>Jaune paille</option>
-                                            <option value='sapin'>Vert Sapin</option>
-                                            <option value='menthe'>Vert Menthe</option>
-                                            <option value='alizee'>Bleu ciel</option>
-                                            <option value='turquoise'>Turquoise</option>
-                                            <option value='bleuF'>Bleu Foncé</option>
-                                            <option value='violet'>Violet</option>
-                                        </optgroup>
-                                        <optgroup label='Spéciaux'>
-                                            <option value='couvHEC'>Couverture Mémoire HEC</option>
-                                        </optgroup>
-                                    </select>
-                                </li>
-                                <li data-role="fieldcontain">
-                                    <label for="couvAr">Couverture Arrière</label>
-                                    <select id="couvAr" name="couvAr" data-native-menu="false" data-icon="grid" data-iconpos="left">
-                                        <option value='non'>Aucune</option>
-                                        <optgroup label='Blanc'>
-                                            <option value='75'>Standard</option>
-                                            <option value='90'>90 grammes</option>
-                                            <option value='120'>120 grammes</option>
-                                            <option value='160'>160 grammes</option>
-                                            <option value='200'>200 grammes</option>
-                                            <option value='250'>250 grammes</option>
-                                            <option value='300'>300 grammes</option>
-                                        </optgroup>
-                                        <optgroup label='Glacés (Photo)'>
-                                            <option value='photo135'>135 grammes</option>
-                                            <option value='photo200'>200 grammes</option>
-                                            <option value='photo250'>250 grammes</option>
-                                        </optgroup>
-                                        <optgroup label='Couleurs'>
-                                            <option value='framboise'>Framboise</option>
-                                            <option value='orange'>Orange</option>
-                                            <option value='or'>Jaune or</option>
-                                            <option value='paille'>Jaune paille</option>
-                                            <option value='sapin'>Vert Sapin</option>
-                                            <option value='menthe'>Vert Menthe</option>
-                                            <option value='alizee'>Bleu ciel</option>
-                                            <option value='turquoise'>Turquoise</option>
-                                            <option value='bleuF'>Bleu Foncé</option>
-                                            <option value='violet'>Violet</option>
-                                        </optgroup>
-                                        <optgroup label='Spéciaux'>
-                                            <option value='couvHEC'>Dos Mémoire HEC</option>
-                                        </optgroup>
-                                    </select>
-                                </li>
-                                <li data-role='fieldcontain'>
-                                    <fieldset data-role="controlgroup" data-type="horizontal">
-                                        <legend>Couverture Avant : </legend>
-                                        <input name="couvOption" id="couvNon" value="couvNon" checked="checked" type="radio">
-                                        <label for="couvNon">Pas de couverture</label>
-                                        <input name="couvOption" id="premierePageNoir" value="premierePageNoir" type="radio">
-                                        <label for="premierePageNoir">Première page du fichier Noir</label>
-                                        <input name="couvOption" id="premierePageCouleur" value="premierePageCouleur" type="radio">
-                                        <label for="premierePageCouleur">Première page du fichier Couleur</label>
-                                    </fieldset>
-                                </li>
-                                <li data-role='fieldcontain'>
-                                    <label for='papierComm'>Commentaires : </label>
-                                    <textarea name='papierComm' id='papierComm'></textarea>
-                                </li>
-                            </ul>
-                            </p>
-                        </div>
-                        <div data-role="collapsible">
-                            <h3>Reliures/Finitions</h3>
-                            <p>
-                            <ul data-role="listview" data-inset="true">
-                                <li data-role='fieldcontain'>
-                                    <label for="couvAr">Reliure/Agrafage</label>
-                                    <select id="reliure" name="reliure" data-native-menu="false" data-icon="grid" data-iconpos="left">
-                                        <option value='non'>Pas de reliure</option>
-                                        <optgroup label='Ecoles'>
-                                            <option value='reliureHEC'>Mémoire HEC</option>
-                                        </optgroup>
-                                        <optgroup label='Agrafage'>
-                                            <option value='agrafeOblique'>Oblique dans coin supérieur gacuche</option>
-                                            <option value='agrapheDroite'>Droite dans coin supérieur gauche</option>
-                                            <option value='agrapheDouble'>Double à gauche</option>
-                                        </optgroup>
-                                        <optgroup label='Anneaux'>
-                                            <option value='anneaux'>Anneaux plastiques</option>
-                                        </optgroup>
-                                        <optgroup label='Fast-Back'>
-                                            <option value='fastBlanc'>Blanc</option>
-                                            <option value='fastNoir'>Noir</option>
-                                            <option value='fastGrisHEC'>Gris foncé (HEC)</option>
-                                            <option value='FastrisC'>Gris clair</option>
-                                            <option value='fastRouge'>Rouge</option>
-                                            <option value='fastBleuF'>Bleu foncé</option>
-                                            <option value='fastBleuC'>Bleu clair</option>
-                                            <option value='fastVert'>Vert</option>
-                                            <option value='fastBrun'>Brun</option>
-                                            <option value='fastBrunF'>Brun Foncé</option>
-                                        </optgroup>
-                                    </select>
-                                </li>
-                                <li data-role='fieldcontain'>
-                                    <fieldset data-role="controlgroup" data-type="horizontal">
-                                        <legend>Perforation </legend>
-                                        <input name="perfo" id="perfoNon" value="perfoNon" checked="checked" type="radio">
-                                        <label for="perfoNon">Non</label>
-                                        <input name="perfo" id="2trous" value="2trous" type="radio">
-                                        <label for="2trous">Deux trous</label>
-                                        <input name="perfo" id="4trous" value="4trous" type="radio">
-                                        <label for="4trous">Quatre trous</label>
-                                    </fieldset>
-                                </li>
-                                <li data-role='fieldcontain'>
-                                    <fieldset data-role="controlgroup" data-type="horizontal">
-                                        <legend>Transparents de protection</legend>
-                                        <input name="cellos" id="cellosNon" value="cellosNon" checked="checked" type="radio">
-                                        <label for="cellosNon">Non</label>
-                                        <input name="cellos" id="cellosAv" value="cellosAv" type="radio">
-                                        <label for="cellosAv">Devant</label>
-                                        <input name="cellos" id="cellosAr" value="cellosAr" type="radio">
-                                        <label for="cellosAr">Derrière</label>
-                                        <input name="cellos" id="cellosAvAr" value="cellosAvAr" type="radio">
-                                        <label for="cellosAvAr">Devant et derrière</label>
-                                    </fieldset>
-                                </li>
-                                <li data-role="fieldcontain">
-                                    <label for="fBlanche">Feuille blanche entre couverture et première page</label>
-                                    <select name="fBlanche" id="fBlanche" data-role="slider">
-                                        <option value="pasFBlanche">Non</option>
-                                        <option value="fBlanche">Oui</option>
-                                    </select>
-                                </li>
-                            </ul>
-                            </p>
-                        </div>
-                    </div>
-                    <button type='submit'>Calculer</button>
+                <p>La première étape consiste à envoyer vos fichers à nos serveurs. Nous pourrons ainsi vous fournir le prix le plus juste pour vos impressions. Toute commande non terminée implique la suppression du fichier téléchargé de nos serveurs.</p>
+                <p><b><?php
+                        if (isset($_SESSION["message"]))
+                        {
+                            echo $_SESSION["message"];
+                            unset($_SESSION["message"]);
+                        }
+                        ?></b></p>
+                <form data-ajax="false" enctype="multipart/form-data" method='post' action='telechargement.php'>
+                    <ul data-role="listview" data-inset="true">
+                        <li data-role="fieldcontain">
+                            <label for="nbExemplaire">Nombre d'exemplaire :</label>
+                            <input type="range" id="nbExemplaire" name="nbExemplaire" min='0' max='1000' value='1' step='1'/>
+                        </li>
+                        <li data-role="fieldcontain">
+                            <label for="fichier">Fichier PDF</label>
+                            <input type="file" id="fichier" name="fichier"/>
+                        </li>
+                        <li data-role='fieldcontain'>
+                            <label for='couleurs'>Numéros des pages à imprimer en couleur <a href='#couleursInfo' data-rel="popup" data-role="button" data-rel="popup" data-role="button" class="ui-icon-alt" data-inline="true" data-transition="pop" data-icon="info" data-theme="e" data-iconpos="notext">Aide</a></label>
+                            <div data-role="popup" id="couleursInfo" class="ui-content" data-theme="e" style="max-width:700px;">
+                                <p>
+                                    Les pages qui se suivent séparées par un "-" et les groupes de pages séparées par ";" <br/>
+                                    Exemple : Pour imprimer de la page 1 à 5, la page 6 et les pages 8 à 10 <br/>
+                                    1 - 5 ; 6 ; 8 - 10 <br/>
+                                    Laissez vide pour tout imprimer en noir
+                                </p>
+                            </div>
+                            <input type='text' name='couleurs' id='couleurs'>
+                        </li>
+                        <li data-role='fieldcontain'>
+                            <label for='prixMemoire'>Mémoire</label>
+                            <input type='checkbox' id='prixMemoire' name='prixMemoire'>
+                        </li>
+                        <button type='submit'>Télécharger</button>
+                    </ul>
                 </form>
             </div>
             <div data-role="footer" data-position="fixed" data-theme="c">
